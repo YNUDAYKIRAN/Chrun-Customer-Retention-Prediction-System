@@ -1,0 +1,28 @@
+2026-01-06 17:47:06,682 - INFO - Dataset Info ===================================
+2026-01-06 17:47:06,683 - INFO - Dataset Shape: (7043, 21)
+2026-01-06 17:47:06,683 - INFO - Dataset Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+2026-01-06 17:47:06,684 - INFO - Dataset Dtypes:
+customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges         object
+Churn                object
+dtype: object
+2026-01-06 17:47:06,684 - INFO - Dataset loaded successfully
+2026-01-06 17:47:06,693 - INFO - Synthetic columns added successfully
