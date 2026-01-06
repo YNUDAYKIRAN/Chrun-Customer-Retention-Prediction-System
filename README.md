@@ -1,4 +1,3 @@
-# Chrun-Customer-Retention-Prediction-System
 
 # 📊 Customer Churn Prediction & Retention Analytics
 Turning customer data into retention intelligence
