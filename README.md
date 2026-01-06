@@ -45,9 +45,13 @@ This variable serves as the key indicator for retention analysis.
 
 # 🗺️ Project Roadmap
 Phase	Description	Status
+
 Phase 1	Data Understanding & Documentation	✅ Completed
+
 Phase 2	Data Cleaning & Visualization	⏳ In Progress
+
 Phase 3	Model Building	⏳ Planned
+
 Phase 4	Explainability & Deployment	⏳ Planned
 
 # 📌 Current Progress
