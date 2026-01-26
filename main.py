@@ -39,7 +39,7 @@ class CHURN_PREDICTION:
             self.path = path
             self.df = pd.read_csv(self.path)
 
-            # 🔥 CRITICAL FIX (DO THIS ONCE, HERE ONLY)
+     
             if 'TotalCharges' in self.df.columns:
                 self.df['TotalCharges'] = pd.to_numeric(
                     self.df['TotalCharges'], errors='coerce'
@@ -73,17 +73,13 @@ class CHURN_PREDICTION:
             logger.info(f"Train Churn Ratio: {self.y_train.mean():.2f}")
             logger.info(f"Test Churn Ratio: {self.y_test.mean():.2f}")
 
-            # 🔎 FINAL ASSERTION (VERY IMPORTANT)
-            assert self.X_train['TotalCharges'].dtype != 'object', \
-                "TotalCharges is still object — ingestion fix failed"
+            assert self.X_train['TotalCharges'].dtype != 'object', \"TotalCharges is still object — ingestion fix failed"
 
         except Exception as e:
             er_ty, er_msg, er_line = sys.exc_info()
             logger.error(f"Error in Line no : {er_line.tb_lineno} : due to {er_msg}")
 
-    # # ============================================================
-    # # STEP 2: MISSING VALUES
-    # # ============================================================
+   
     def missing_values(self):
         try:
             logger.info("=== STEP 2: Missing Value Handling (10-Technique Tournament) ===")
@@ -154,8 +150,6 @@ class CHURN_PREDICTION:
                     logger.info(f"Categorical '{col}': Defaulted to Mode")
 
             logger.info("Missing value handling complete.")
-
-            # 🔎 FINAL SAFETY CHECK
             logger.info(f"TotalCharges dtype after missing handling: {self.X_train['TotalCharges'].dtype}")
 
         except Exception as e:
@@ -163,10 +157,7 @@ class CHURN_PREDICTION:
             logger.error(f"Error in Line no : {er_line.tb_lineno} : due to {er_msg}")
 
 
-    # # ============================================================
-    # # STEP 3: CATEGORICAL → NUMERICAL
-    # # ============================================================
-
+   
     def cat_num(self):
         try:
             logger.info("=== STEP 3: Grand Slam Categorical Encoding (FINAL FIXED v2) ===")
@@ -178,17 +169,14 @@ class CHURN_PREDICTION:
             self.encoding_strategy = {}
             self.encoders = {}
 
-            # 🔴 FIX 0: FORCE NUMERIC COLUMNS (CRITICAL)
             numeric_force_cols = ['TotalCharges', 'MonthlyCharges', 'tenure']
             for col in numeric_force_cols:
                 if col in X_train.columns:
                     X_train[col] = pd.to_numeric(X_train[col], errors='coerce')
                     X_test[col] = pd.to_numeric(X_test[col], errors='coerce')
 
-            # 🔎 DEBUG (optional but recommended)
+         
             logger.info(f"TotalCharges dtype before encoding: {X_train['TotalCharges'].dtype}")
-
-            # 🔴 FIX 1: ONLY object columns are categorical
             cat_cols = X_train.select_dtypes(include=['object']).columns.tolist()
 
             new_train_parts = []
@@ -331,10 +319,6 @@ class CHURN_PREDICTION:
 
 
 
-    # # ============================================================
-    # # STEP 4: TRANSFORMATION + OUTLIERS
-    # # ============================================================
-
     def vt_hol(self):
         try:
             logger.info("=== STEP 4: Variable Transformation & Outliers (Tournament) ===")
@@ -347,7 +331,6 @@ class CHURN_PREDICTION:
             self.X_test = X_test_tr
             self.vt_strategy = vt_strategy  # 🔴 STORE IT
 
-            # 🔒 FINAL SAFETY CHECK
             assert list(self.X_train.columns) == list(self.X_test.columns), \
                 "Column mismatch after VT/Outlier handling"
 
@@ -362,11 +345,6 @@ class CHURN_PREDICTION:
             logger.error(f"Error in Line no : {er_line.tb_lineno} : due to {er_msg}")
 
 
-
-    # # ============================================================
-    # # STEP 5: FEATURE SELECTION
-    # # ============================================================
-
     def feature_selection(self):
         try:
             logger.info("=== STEP 5: Feature Selection (8-Strategy Tournament) ===")
@@ -377,13 +355,10 @@ class CHURN_PREDICTION:
                 self.y_train
             )
 
-            # 🔒 HARD FREEZE FEATURE SPACE
             self.selected_features = list(selected_features)
-
             self.X_train = X_train_fs[self.selected_features].copy()
             self.X_test = X_test_fs[self.selected_features].copy()
 
-            # 🔒 SAVE ORDER (CRITICAL)
             with open("selected_features.pkl", "wb") as f:
                 pickle.dump(self.selected_features, f)
 
@@ -395,23 +370,16 @@ class CHURN_PREDICTION:
             er_ty, er_msg, er_line = sys.exc_info()
             logger.error(f"Error in Line no : {er_line.tb_lineno} :due to {er_msg}")
 
-    # # ============================================================
-    # # STEP 6 & 7: SCALING + BALANCING
-    # # ============================================================
-
     def scaling_and_balancing(self):
         try:
             logger.info("=== STEP 6 & 7: Scaling + Balancing (Grand Slam Tournament) ===")
 
-            # 🔒 HARD LOCK FEATURE SELECTION (CRITICAL FIX)
             self.X_train = self.X_train[self.selected_features].copy()
             self.X_test = self.X_test[self.selected_features].copy()
 
             logger.info(f"Locked features count: {len(self.selected_features)}")
             logger.info(f"X_train shape before scaling: {self.X_train.shape}")
             logger.info(f"X_test shape before scaling: {self.X_test.shape}")
-
-            # ✅ PASS selected_features EXPLICITLY
             self.X_train_bal, self.y_train_bal, \
                 self.X_test_bal, self.y_test_bal, \
                 self.scaler = scale_and_balance_tournament(
@@ -422,7 +390,6 @@ class CHURN_PREDICTION:
                 self.selected_features
             )
 
-            # 💾 Save scaler
             with open("scaler.pkl", "wb") as f:
                 pickle.dump(self.scaler, f)
 
@@ -436,9 +403,7 @@ class CHURN_PREDICTION:
 
 
 
-    # # ============================================================
-    # # FINAL STEP: MODELS
-    # # ============================================================
+  
 
 
     def all_models(self):
@@ -503,3 +468,4 @@ if __name__ == "__main__":
     except Exception as e:
         er_ty, er_msg, er_line = sys.exc_info()
         logger.error(f"Error in Line no : {er_line.tb_lineno} :due to {er_msg}")
+
