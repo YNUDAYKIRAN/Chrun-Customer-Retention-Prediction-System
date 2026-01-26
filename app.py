@@ -6,14 +6,8 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-# ===============================
-# APP INITIALIZATION
-# ===============================
 app = Flask(__name__)
 
-# ===============================
-# LOAD TRAINING ARTIFACTS
-# ===============================
 
 # Best Model + Threshold
 with open("best_model.pkl", "rb") as f:
@@ -38,28 +32,18 @@ with open("encoding_strategy.pkl", "rb") as f:
 with open("encoders.pkl", "rb") as f:
     encoders = pickle.load(f)
 
-# ===============================
-# HOME ROUTE
-# ===============================
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# ===============================
-# PREDICTION ROUTE
-# ===============================
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        # -------------------------------------------------
-        # STEP 1: READ FORM DATA
-        # -------------------------------------------------
+
         input_data = dict(request.form)
         df = pd.DataFrame([input_data])
-
-        # -------------------------------------------------
-        # STEP 2: COLUMN ALIGNMENT (Frontend → Training)
-        # -------------------------------------------------
+        
         rename_map = {
             "DeviceType": "Device_Type",
             "NetworkType": "Network_Type",
@@ -67,19 +51,12 @@ def predict():
         }
         df.rename(columns=rename_map, inplace=True)
 
-        # -------------------------------------------------
-        # STEP 3: NUMERIC TYPE CASTING
-        # -------------------------------------------------
         numeric_cols = ["SeniorCitizen", "tenure",
                         "MonthlyCharges", "TotalCharges"]
 
         for col in numeric_cols:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
-
-        # -------------------------------------------------
-        # STEP 4: APPLY TRAINED ENCODING (STRICT)
-        # -------------------------------------------------
 
         for col, method in encoding_strategy.items():
 
@@ -113,9 +90,6 @@ def predict():
                 if c in selected_features:
                     df[c] = pd.to_numeric(df_ohe[c], errors="coerce").fillna(0)
 
-        # -------------------------------------------------
-        # STEP 5: HARD FEATURE LOCK (FINAL & SAFE)
-        # -------------------------------------------------
 
         df_final = pd.DataFrame(
             0.0,  # force float
@@ -130,14 +104,9 @@ def predict():
 
 
 
-        # -------------------------------------------------
-        # STEP 6: SCALING
-        # -------------------------------------------------
+  
         X_scaled = scaler.transform(df_final)
-
-        # -------------------------------------------------
-        # STEP 7: PREDICTION
-        # -------------------------------------------------
+        
         prob = model.predict_proba(X_scaled)[0][1]
 
         if prob >= THRESHOLD:
@@ -157,8 +126,6 @@ def predict():
             prediction_text=f"Prediction Error: {str(e)}"
         )
 
-# ===============================
-# RUN SERVER
-# ===============================
 if __name__ == "__main__":
     app.run(debug=True)
+
