@@ -1,299 +1,279 @@
-📊 AI-Powered Telecom Customer Churn Prediction System
+# 📊 AI-Powered Telecom Customer Churn Prediction System
 
-An end-to-end Machine Learning–driven Customer Churn Prediction System designed to identify high-risk customers and enable proactive retention strategies.
-This project implements a fully automated ML pipeline with tournament-based decision making at every stage — from preprocessing to model selection — and includes a Flask web application for real-time predictions.
+An end-to-end **Machine Learning–driven Customer Churn Prediction System** designed to identify customers at risk of leaving and enable proactive retention strategies.
 
-🚀 Project Highlights
+This project implements a **fully automated, tournament-based ML pipeline**, where the best-performing technique is selected at every stage — from preprocessing to model selection — and is deployed using a **Flask web application**.
 
-🔁 Tournament-based ML pipeline (best technique wins at every step)
-🧠 Multiple ML models trained & evaluated automatically
-📈 ROC-AUC driven model selection
-🧪 Advanced feature engineering & selection
-⚖️ Automated class imbalance handling
-🌐 Production-ready Flask deployment
-🔒 Strict feature locking to prevent data leakage
-📊 Rich EDA with 30+ professional visualizations
-🏢 Business Problem
+---
 
-Customer churn directly impacts revenue and growth. Acquiring a new customer costs 5–7x more than retaining an existing one.
+## 🚀 Project Highlights
 
-This system helps businesses:
-Detect early churn signals
+- Tournament-based decision making at every ML stage  
+- Automated feature engineering and selection  
+- ROC-AUC driven model comparison  
+- Robust handling of class imbalance  
+- End-to-end production-ready ML pipeline  
+- Flask-based web application for real-time predictions  
+- Strict feature locking to avoid data leakage  
+- Professional EDA with saved visual reports  
 
-Segment high-risk customers
+---
 
-Take data-driven retention actions
+## 🏢 Business Problem
 
-Reduce revenue leakage proactively
+Customer churn is a major challenge in competitive industries like telecom, banking, and SaaS.
 
-📂 Dataset
+- Acquiring a new customer costs 5–7x more than retaining an existing one  
+- Businesses often lack early warning signals for churn  
+- Reactive retention strategies lead to revenue loss  
 
-Source: Telco Customer Churn Dataset (Kaggle)
+This system helps organizations **predict churn in advance** and take **data-driven retention actions**.
 
-Records: 7,043 customers
+---
 
-Target Variable: Churn (Yes / No)
+## 📂 Dataset
 
-Key Feature Groups
+- **Dataset**: Telco Customer Churn (Kaggle)  
+- **Records**: 7,043 customers  
+- **Target Variable**: `Churn` (Yes / No)
 
-Demographics (gender, senior citizen, dependents)
+### Feature Categories
+- Customer demographics  
+- Subscription and service details  
+- Billing and contract information  
+- Usage behavior and tenure  
+- Synthetic segmentation features for advanced analysis  
 
-Services (internet, phone, add-ons)
+---
 
-Billing & contracts
+## 🧠 System Architecture
 
-Usage & tenure
+Data Ingestion  
+→ Missing Value Handling Tournament  
+→ Categorical Encoding Tournament  
+→ Outlier Handling & Variable Transformation  
+→ Feature Selection Tournament  
+→ Scaling Tournament  
+→ Balancing Tournament  
+→ Model Training Grand Prix  
+→ Best Model Selection  
+→ Flask Deployment  
 
-Synthetic segmentation features (region, device, network, usage pattern)
+---
 
-🧠 System Architecture
-Data Ingestion
-      ↓
-Missing Value Tournament
-      ↓
-Categorical Encoding Tournament
-      ↓
-Outlier Handling + Variable Transformation
-      ↓
-Feature Selection Tournament
-      ↓
-Scaling Tournament
-      ↓
-Balancing Tournament
-      ↓
-Model Grand Prix (9 Models)
-      ↓
-Best Model Selection (ROC-AUC)
-      ↓
-Flask Deployment
+## 🧪 Machine Learning Pipeline
 
-🧪 Machine Learning Pipeline (Step-by-Step)
-✅ 1. Missing Value Handling
+### 1️⃣ Missing Value Handling
+- Mean, Median, Mode, Constant comparison  
+- Best strategy selected using variance preservation  
 
-Mean / Median / Mode / Constant comparison
-
-Variance preservation used to select the best method
-
-✅ 2. Categorical Encoding Tournament
-
+### 2️⃣ Categorical Encoding Tournament
 Techniques evaluated per feature:
+- Label Encoding  
+- Frequency Encoding  
+- Count Encoding  
+- Target Mean Encoding  
+- One-Hot Encoding  
+- Ordinal Encoding  
+- Feature Hashing  
 
-Label Encoding
+Winner selected using **Mutual Information Score**.
 
-Frequency Encoding
+---
 
-Count Encoding
+### 3️⃣ Outlier Handling & Variable Transformation
+- Outlier clipping (1st–99th percentile)  
+- Transformations tested:
+  - Log  
+  - Square Root  
+  - Yeo-Johnson  
+  - Reciprocal  
+  - Original  
 
-Target Mean Encoding
+Winner chosen based on **minimum skewness**.
 
-One-Hot Encoding
+---
 
-Ordinal Encoding
-
-Feature Hashing
-
-➡ Winner chosen using Mutual Information Score
-
-✅ 3. Outlier Handling & Variable Transformation
-
-1%–99% clipping
-
-Transformation tournament:
-
-Log
-
-Square Root
-
-Yeo-Johnson
-
-Reciprocal
-
-Original
-
-➡ Lowest skewness wins
-
-✅ 4. Feature Selection (Grand Slam)
-
+### 4️⃣ Feature Selection (Grand Slam)
 Methods used:
+- ANOVA  
+- Mutual Information  
+- Recursive Feature Elimination  
+- L1 (Lasso)  
+- Random Forest  
+- Extra Trees  
+- Gradient Boosting  
 
-ANOVA
+Best feature subset selected using **cross-validated ROC-AUC**, with business-critical features preserved.
 
-Mutual Information
+---
 
-RFE (Logistic & Tree)
+### 5️⃣ Scaling & Balancing Tournament
 
-L1 (Lasso)
+**Scalers Evaluated**
+- StandardScaler  
+- MinMaxScaler  
+- RobustScaler  
+- PowerTransformer  
+- QuantileTransformer  
 
-Random Forest
+**Balancing Techniques**
+- Class Weights  
+- SMOTE  
+- ADASYN  
+- Borderline-SMOTE  
+- Under-sampling  
+- Hybrid methods  
 
-Extra Trees
+Best scaler + balancing strategy selected via ROC-AUC.
 
-Gradient Boosting
+---
 
-➡ Best subset chosen via cross-validated ROC-AUC
-➡ Business-critical features are force-retained
+### 6️⃣ Model Training (Grand Prix)
 
-✅ 5. Scaling & Balancing Tournament
+Models trained and evaluated:
+- Logistic Regression  
+- KNN  
+- Naive Bayes  
+- Decision Tree  
+- Random Forest  
+- AdaBoost  
+- Gradient Boosting  
+- XGBoost  
+- Support Vector Machine  
 
-Scalers Tested
+Metrics used:
+- Accuracy  
+- ROC-AUC  
+- Confusion Matrix  
+- Classification Report  
+- Optimal Decision Threshold  
 
-StandardScaler
+Best-performing model is automatically saved.
 
-MinMaxScaler
+---
 
-RobustScaler
+## 📊 Exploratory Data Analysis (EDA)
 
-PowerTransformer
+- Churn distribution analysis  
+- Tenure vs churn  
+- Monthly charges impact  
+- Contract and billing behavior  
+- Value-added services effect  
+- Senior citizen churn trends  
+- Multi-dimensional segmentation  
+- Correlation heatmap  
 
-QuantileTransformer
+All plots are generated and saved automatically.
 
-Normalizer
+---
 
-Balancing Methods
+## 🌐 Web Application (Flask)
 
-Class Weights
+### Features
+- User-friendly input form  
+- Strict feature alignment with training pipeline  
+- No unseen categories allowed  
+- Probability-based churn prediction  
+- Threshold-aware decision logic  
 
-SMOTE / ADASYN / BorderlineSMOTE
+### Prediction Output
+YES – Customer Likely to Churn (Prob: 0.78)  
+NO – Customer Likely to Stay (Prob: 0.21)  
 
-Under-sampling
+---
 
-Hybrid methods (SMOTEENN, SMOTETomek)
+## 📦 Project Structure
 
-➡ Best combination selected via ROC-AUC
+## 📁 Project Structure
 
-✅ 6. Model Training (Grand Prix)
+<pre>
+├── data/
+│   ├── raw/
+│   │   └── telco_churn.csv
+│   └── processed/
+│
+├── src/
+│   ├── main.py
+│   ├── vt_hol.py
+│   ├── fs.py
+│   ├── data_scal.py
+│   ├── all_models.py
+│   ├── Visual_Prt_Data.py
+│   └── log_code.py
+│
+├── models/
+│   ├── best_model.pkl
+│   ├── scaler.pkl
+│   ├── encoders.pkl
+│   └── selected_features.pkl
+│
+├── reports/
+│   ├── model_leaderboard.csv
+│   └── roc_curve_comparison.png
+│
+├── app.py
+├── templates/
+│   └── index.html
+├── requirements.txt
+└── README.md
+</pre>
 
-Models evaluated:
 
-Logistic Regression
 
-KNN
 
-Naive Bayes
+---
 
-Decision Tree
+## ▶️ How to Run the Project
 
-Random Forest
+### Step 1: Install Dependencies
 
-AdaBoost
 
-Gradient Boosting
-
-XGBoost
-
-SVM
-
-📊 Metrics:
-
-Accuracy
-
-ROC-AUC
-
-Confusion Matrix
-
-Classification Report
-
-Optimal Threshold (Youden’s J)
-
-➡ Best model auto-saved
-
-📊 Exploratory Data Analysis (EDA)
-
-Churn distribution
-
-Tenure vs churn
-
-Monthly charges analysis
-
-Contract & billing behavior
-
-Value-added services impact
-
-Senior citizen behavior
-
-Multi-dimensional segmentation
-
-Correlation heatmap
-
-📁 All plots saved automatically for reporting.
-
-🌐 Web Application (Flask)
-Features
-
-User-friendly form interface
-
-Strict feature alignment with training pipeline
-
-No unseen categories allowed
-
-Probability-based churn prediction
-
-Threshold-aware decision logic
-
-Prediction Output
-YES – Customer Likely to Churn (Prob: 0.78)
-NO – Customer Likely to Stay (Prob: 0.21)
-
-📦 Project Structure
-├── app.py                     # Flask application
-├── main.py                    # Complete ML pipeline
-├── vt_hol.py                  # Outlier + transformation tournament
-├── fs.py                      # Feature selection tournament
-├── data_scal.py               # Scaling & balancing tournament
-├── all_models.py              # Model training & evaluation
-├── Visual_Prt_Data.py         # EDA & visualization module
-├── log_code.py                # Centralized logging
-├── encoders.pkl               # Saved encoders
-├── scaler.pkl                 # Best scaler
-├── selected_features.pkl      # Locked feature list
-├── best_model.pkl             # Final trained model
-├── model_leaderboard.csv      # Model comparison
-├── roc_curve_comparison.png
-├── logs/
-└── templates/
-    └── index.html
-
-▶️ How to Run the Project
-1️⃣ Install Dependencies
 pip install -r requirements.txt
 
-2️⃣ Train the Model
+
+### Step 2: Train the Model
+
+
 python main.py
 
-3️⃣ Run Web App
+
+### Step 3: Run the Web Application
+
+
 python app.py
 
 
-Open browser:
+Open in browser:
+
 
 http://127.0.0.1:5000/
 
-📈 Business Impact
 
-Early churn detection
+---
 
-Targeted retention campaigns
+## 📈 Business Impact
 
-Reduced acquisition cost
+- Early identification of at-risk customers  
+- Targeted retention strategies  
+- Reduced customer acquisition cost  
+- Improved customer lifetime value  
+- Production-ready decision support system  
 
-Improved customer lifetime value
+---
 
-Production-ready decision system
+## 🔮 Future Enhancements
 
-🔮 Future Enhancements
+- SHAP / LIME explainability  
+- CRM integration  
+- Automated retention campaigns  
+- Deep learning models (LSTM)  
+- Interactive dashboards  
 
-SHAP / LIME explainability
+---
 
-CRM integration
+## 👨‍💻 Author
 
-Automated retention offers
-
-Deep learning (LSTM churn modeling)
-
-Real-time dashboards (Streamlit)
-
-👨‍💻 Author
-
-Uday Kiran
-Data Science & Machine Learning Engineer
-🎯 Focus: End-to-End ML Systems | Production Pipelines | Applied AI
+**Uday Kiran**  
+Data Science & Machine Learning Engineer  
+Focus: End-to-End ML Systems | Applied AI | Production Pipelines  
