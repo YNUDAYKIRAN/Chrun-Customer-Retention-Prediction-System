@@ -15,7 +15,7 @@ def variable_transformation_outliers(X_train, X_test):
     X_test_tr = X_test.copy()
     strategy = {}
 
-    # Exclude encoded/artificial numeric columns
+
     exclude_keywords = ['_hash_', 'target', 'freq', 'count']
     numeric_cols = X_train_tr.select_dtypes(include='number').columns
 
@@ -95,6 +95,7 @@ def variable_transformation_outliers(X_train, X_test):
             X_train_tr[col] = 1 / (X_train_tr[col] + 1e-4)
             X_test_tr[col] = 1 / (X_test_tr[col] + 1e-4)
 
-        # Original → nothing to apply (already clipped)
+        
 
     return X_train_tr, X_test_tr, strategy
+
