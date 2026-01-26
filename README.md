@@ -6,27 +6,18 @@ This project implements a fully automated ML pipeline with tournament-based deci
 🚀 Project Highlights
 
 🔁 Tournament-based ML pipeline (best technique wins at every step)
-
 🧠 Multiple ML models trained & evaluated automatically
-
 📈 ROC-AUC driven model selection
-
 🧪 Advanced feature engineering & selection
-
 ⚖️ Automated class imbalance handling
-
 🌐 Production-ready Flask deployment
-
 🔒 Strict feature locking to prevent data leakage
-
 📊 Rich EDA with 30+ professional visualizations
-
 🏢 Business Problem
 
 Customer churn directly impacts revenue and growth. Acquiring a new customer costs 5–7x more than retaining an existing one.
 
 This system helps businesses:
-
 Detect early churn signals
 
 Segment high-risk customers
