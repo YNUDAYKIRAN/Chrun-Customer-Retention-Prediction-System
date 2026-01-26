@@ -35,10 +35,6 @@ def scale_and_balance_tournament(
     """
     try:
         logger.info("=== STEP 6 & 7: Scaling + Balancing Tournament ===")
-
-        # ==================================================
-        # 🔒 HARD FEATURE LOCK (CRITICAL FIX)
-        # ==================================================
         X_train = X_train[selected_features].copy()
         X_test = X_test[selected_features].copy()
 
@@ -46,9 +42,6 @@ def scale_and_balance_tournament(
             f"Locked feature count before scaling: {len(selected_features)}"
         )
 
-        # ==================================================
-        # PHASE 1: SCALING TOURNAMENT
-        # ==================================================
         logger.info("\n--- ROUND 1: SCALING TOURNAMENT ---")
 
         scalers = {
@@ -113,9 +106,6 @@ def scale_and_balance_tournament(
             f"(ROC_AUC = {scaler_scores[best_scaler_name]:.4f})"
         )
 
-        # ==================================================
-        # APPLY BEST SCALER (ONLY SELECTED FEATURES)
-        # ==================================================
         X_train_scaled = X_train.copy()
         X_test_scaled = X_test.copy()
 
@@ -138,9 +128,7 @@ def scale_and_balance_tournament(
             index=X_test_scaled.index
         )
 
-        # ==================================================
-        # PHASE 2: BALANCING TOURNAMENT
-        # ==================================================
+     
         logger.info("\n--- ROUND 2: BALANCING TOURNAMENT ---")
 
         balancers = {
@@ -230,3 +218,4 @@ def scale_and_balance_tournament(
             f"Scaling/Balancing Error at line {line.tb_lineno}: {m}"
         )
         raise
+
