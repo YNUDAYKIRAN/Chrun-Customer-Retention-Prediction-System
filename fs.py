@@ -24,9 +24,7 @@ def feature_selection_tournament(X_train, X_test, y_train):
     """
     try:
 
-        # =====================================================
-        # PHASE 1: PRE-CLEANING
-        # =====================================================
+
         initial_count = X_train.shape[1]
 
         vt = VarianceThreshold(0.01)
@@ -51,9 +49,7 @@ def feature_selection_tournament(X_train, X_test, y_train):
             f"(Dropped {initial_count - len(current_cols)})"
         )
 
-        # =====================================================
-        # PHASE 2: STRATEGY SETUP
-        # =====================================================
+       
         k_target = min(20, int(len(current_cols) * 0.75))
         logger.info(f"Targeting Top {k_target} features per strategy")
 
@@ -119,9 +115,7 @@ def feature_selection_tournament(X_train, X_test, y_train):
         cols = current_cols[sel.get_support()]
         strategies['GradBoost'] = cols if len(cols) else current_cols[:k_target]
 
-        # =====================================================
-        # PHASE 3: EVALUATION
-        # =====================================================
+      
         logger.info("\n=== FEATURE SELECTION RESULTS (CV AUC) ===")
 
         results = {}
@@ -141,9 +135,7 @@ def feature_selection_tournament(X_train, X_test, y_train):
                 f"{name.ljust(15)} | AUC: {mean_auc:.4f} | Features: {len(cols)}"
             )
 
-        # =====================================================
-        # PHASE 4: WINNER
-        # =====================================================
+      
         best_strategy = max(results, key=results.get)
         best_features = list(strategies[best_strategy])
 
@@ -152,9 +144,7 @@ def feature_selection_tournament(X_train, X_test, y_train):
         logger.info(f"BEST AUC SCORE  : {results[best_strategy]:.4f}")
         logger.info(f"FEATURE COUNT  : {len(best_features)}")
 
-        # =====================================================
-        # PHASE 5: BUSINESS-CRITICAL RESCUE
-        # =====================================================
+      
         ALWAYS_KEEP = [
             'tenure', 'MonthlyCharges', 'TotalCharges',
             'Contract', 'PaymentMethod'
@@ -185,4 +175,5 @@ def feature_selection_tournament(X_train, X_test, y_train):
     except Exception as e:
         t, m, line = sys.exc_info()
         logger.error(f"FS Tournament Error at Line {line.tb_lineno}: {str(e)}")
+
 
