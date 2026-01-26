@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Customer Churn Prediction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===== Animated Background ===== */
+body{
+    min-height:100vh;
+    background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c92d2);
+    background-size:400% 400%;
+    animation: gradientBG 12s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* ===== Main Container ===== */
+.container{
+    width:1200px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(18px);
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.45);
+    color:#fff;
+}
+
+/* ===== Header ===== */
+header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    font-size:38px;
+    font-weight:700;
+    background: linear-gradient(90deg,#00f2fe,#4facfe);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+header p{
+    margin-top:8px;
+    font-size:15px;
+    opacity:.9;
+}
+
+/* ===== Form ===== */
+form{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+label{
+    font-size:13px;
+    opacity:.85;
+}
+
+input,select{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    background:rgba(255,255,255,0.95);
+    font-size:14px;
+}
+
+/* ===== Button ===== */
+button{
+    grid-column:1/5;
+    margin-top:15px;
+    padding:16px;
+    font-size:18px;
+    font-weight:700;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(90deg,#00f2fe,#4facfe);
+    color:#000;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.04);
+    box-shadow:0 0 25px rgba(79,172,254,0.8);
+}
+
+/* ===== Result Card ===== */
+.result{
+    margin-top:25px;
+    padding:20px;
+    border-radius:14px;
+    background:rgba(0,0,0,0.45);
+    text-align:center;
+    font-size:22px;
+}
+
+/* ===== Footer ===== */
+footer{
+    margin-top:30px;
+    text-align:center;
+    font-size:13px;
+    opacity:.85;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>🤖 AI Customer Churn Prediction</h1>
+    <p>Smart Retention Intelligence System | Developed by <strong>Uday Kiran</strong></p>
+</header>
+
+<form action="/predict" method="post">
+
+<!-- NUMERIC -->
+<label>Senior Citizen</label>
+<select name="SeniorCitizen"><option value="1">Yes</option><option value="0">No</option></select>
+
+<label>Tenure (Months)</label>
+<input type="number" name="tenure" required>
+
+<label>Monthly Charges</label>
+<input type="number" step="0.01" name="MonthlyCharges" required>
+
+<label>Total Charges</label>
+<input type="number" step="0.01" name="TotalCharges" required>
+
+<!-- SERVICES -->
+<label>Partner</label>
+<select name="Partner"><option>Yes</option><option>No</option></select>
+
+<label>Dependents</label>
+<select name="Dependents"><option>Yes</option><option>No</option></select>
+
+<label>Phone Service</label>
+<select name="PhoneService"><option>Yes</option><option>No</option></select>
+
+<label>Multiple Lines</label>
+<select name="MultipleLines">
+<option>Yes</option><option>No</option><option>No phone service</option>
+</select>
+
+<label>Internet Service</label>
+<select name="InternetService">
+<option>DSL</option><option>Fiber optic</option><option>No</option>
+</select>
+
+<label>Online Security</label>
+<select name="OnlineSecurity">
+<option>Yes</option><option>No</option><option>No internet service</option>
+</select>
+
+<label>Online Backup</label>
+<select name="OnlineBackup">
+<option>Yes</option><option>No</option><option>No internet service</option>
+</select>
+
+<label>Device Protection</label>
+<select name="DeviceProtection">
+<option>Yes</option><option>No</option><option>No internet service</option>
+</select>
+
+<label>Tech Support</label>
+<select name="TechSupport">
+<option>Yes</option><option>No</option><option>No internet service</option>
+</select>
+
+<label>Streaming TV</label>
+<select name="StreamingTV">
+<option>Yes</option><option>No</option><option>No internet service</option>
+</select>
+
+<label>Streaming Movies</label>
+<select name="StreamingMovies">
+<option>Yes</option><option>No</option><option>No internet service</option>
+</select>
+
+<!-- BILLING -->
+<label>Contract</label>
+<select name="Contract">
+<option>Month-to-month</option><option>One year</option><option>Two year</option>
+</select>
+
+<label>Paperless Billing</label>
+<select name="PaperlessBilling"><option>Yes</option><option>No</option></select>
+
+<label>Payment Method</label>
+<select name="PaymentMethod">
+<option>Electronic check</option>
+<option>Mailed check</option>
+<option>Bank transfer (automatic)</option>
+<option>Credit card (automatic)</option>
+</select>
+
+<!-- EXTRA -->
+<label>Region</label>
+<select name="Region"><option>Urban</option><option>Semi-Urban</option><option>Rural</option></select>
+
+<label>Device Type</label>
+<select name="DeviceType"><option>Android</option><option>iOS</option><option>Windows</option></select>
+
+<label>Network Type</label>
+<select name="NetworkType"><option>3G</option><option>4G</option><option>5G</option></select>
+
+<label>SIM Provider</label>
+<select name="SIM_Provider"><option>Jio</option><option>Airtel</option><option>Vodafone</option></select>
+
+<label>Usage Pattern</label>
+<select name="UsagePattern"><option>Low</option><option>Medium</option><option>High</option></select>
+
+<button type="submit">🔮 Predict Churn</button>
+</form>
+
+{% if prediction_text %}
+<div class="result">
+<strong>{{ model_name }}</strong><br>
+{{ prediction_text }}
+</div>
+{% endif %}
+
+<footer>
+© 2026 | AI Customer Retention System | Designed & Developed by Uday Kiran
+</footer>
+
+</div>
+</body>
+</html>

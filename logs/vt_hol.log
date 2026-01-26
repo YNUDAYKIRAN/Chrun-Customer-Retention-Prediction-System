@@ -1,0 +1,13 @@
+2026-01-26 15:41:17,543 - INFO - Running VT/Outlier Tournament on 3 columns
+2026-01-26 15:41:17,543 - INFO - 
+Analyzing Column: tenure
+2026-01-26 15:41:17,557 - INFO - Scores (Absolute Skewness): {'Original': 0.23754309850556274, 'Log': 0.7794826471181182, 'Sqrt': 0.23578252832484178, 'YeoJohnson': 0.24289568856009486, 'Reciprocal': 2.358031267015929}
+2026-01-26 15:41:17,557 - INFO - WINNER for 'tenure': Sqrt
+2026-01-26 15:41:17,558 - INFO - 
+Analyzing Column: MonthlyCharges
+2026-01-26 15:41:17,567 - INFO - Scores (Absolute Skewness): {'Original': 0.22718457661359714, 'Log': 0.7218703329511376, 'Sqrt': 0.48849812883121635, 'YeoJohnson': 0.2617888062647489, 'Reciprocal': 1.112431849808857}
+2026-01-26 15:41:17,567 - INFO - WINNER for 'MonthlyCharges': Original
+2026-01-26 15:41:17,567 - INFO - 
+Analyzing Column: TotalCharges
+2026-01-26 15:41:17,578 - INFO - Scores (Absolute Skewness): {'Original': 0.9376818039806171, 'Log': 0.7467937849651085, 'Sqrt': 0.29859047169181113, 'YeoJohnson': 0.1470172172575317, 'Reciprocal': 3.7437939200596193}
+2026-01-26 15:41:17,578 - INFO - WINNER for 'TotalCharges': YeoJohnson

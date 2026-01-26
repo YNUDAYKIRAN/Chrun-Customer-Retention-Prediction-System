@@ -1,0 +1,36 @@
+2026-01-26 15:41:27,234 - INFO - === STEP 6 & 7: Scaling + Balancing Tournament ===
+2026-01-26 15:41:27,235 - INFO - Locked feature count before scaling: 18
+2026-01-26 15:41:27,235 - INFO - 
+--- ROUND 1: SCALING TOURNAMENT ---
+2026-01-26 15:41:28,794 - INFO - 
+=== SCALING TOURNAMENT RESULTS ===
+2026-01-26 15:41:28,794 - INFO - StandardScaler            | ROC_AUC = 0.8484
+2026-01-26 15:41:28,794 - INFO - RobustScaler              | ROC_AUC = 0.8484
+2026-01-26 15:41:28,794 - INFO - MaxAbsScaler              | ROC_AUC = 0.8481
+2026-01-26 15:41:28,794 - INFO - MinMaxScaler              | ROC_AUC = 0.8481
+2026-01-26 15:41:28,794 - INFO - Power_YeoJohnson          | ROC_AUC = 0.8476
+2026-01-26 15:41:28,794 - INFO - Power_BoxCox              | ROC_AUC = 0.8476
+2026-01-26 15:41:28,794 - INFO - Quantile_Uniform          | ROC_AUC = 0.8475
+2026-01-26 15:41:28,794 - INFO - Quantile_Normal           | ROC_AUC = 0.8468
+2026-01-26 15:41:28,794 - INFO - Normalizer_L2             | ROC_AUC = 0.8135
+2026-01-26 15:41:28,794 - INFO - 
+SCALING WINNER -> StandardScaler (ROC_AUC = 0.8484)
+2026-01-26 15:41:28,800 - INFO - 
+--- ROUND 2: BALANCING TOURNAMENT ---
+2026-01-26 15:41:32,238 - INFO - 
+=== BALANCING TOURNAMENT RESULTS ===
+2026-01-26 15:41:32,239 - INFO - SMOTEENN                  | ROC_AUC = 0.9710
+2026-01-26 15:41:32,239 - INFO - SMOTETomek                | ROC_AUC = 0.8732
+2026-01-26 15:41:32,239 - INFO - SVMSMOTE                  | ROC_AUC = 0.8572
+2026-01-26 15:41:32,239 - INFO - SMOTE                     | ROC_AUC = 0.8558
+2026-01-26 15:41:32,239 - INFO - ClassWeight               | ROC_AUC = 0.8482
+2026-01-26 15:41:32,239 - INFO - RandomOverSampler         | ROC_AUC = 0.8477
+2026-01-26 15:41:32,239 - INFO - ClusterCentroids          | ROC_AUC = 0.8447
+2026-01-26 15:41:32,239 - INFO - RandomUnderSampler        | ROC_AUC = 0.8373
+2026-01-26 15:41:32,239 - INFO - BorderlineSMOTE           | ROC_AUC = 0.8276
+2026-01-26 15:41:32,239 - INFO - ADASYN                    | ROC_AUC = 0.8192
+2026-01-26 15:41:32,239 - INFO - NearMiss                  | ROC_AUC = 0.7640
+2026-01-26 15:41:32,240 - INFO - 
+BALANCING WINNER -> SMOTEENN (ROC_AUC = 0.9710)
+2026-01-26 15:41:32,454 - INFO - Final Train Shape: (5126, 18)
+2026-01-26 15:41:32,456 - INFO - Final Class Distribution: {1: 2785, 0: 2341}

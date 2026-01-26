@@ -1,0 +1,165 @@
+2026-01-26 15:41:06,347 - INFO - Data Loaded Successfully
+2026-01-26 15:41:06,348 - INFO - Shape: (7043, 26)
+2026-01-26 15:41:06,353 - INFO - Dtypes:
+customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges        float64
+Churn                object
+Region               object
+Device_Type          object
+Network_Type         object
+SIM_Provider         object
+Usage_Pattern        object
+dtype: object
+2026-01-26 15:41:06,354 - INFO - Available Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn', 'Region', 'Device_Type', 'Network_Type', 'SIM_Provider', 'Usage_Pattern']
+2026-01-26 15:41:06,365 - INFO - Churn Unique Values after mapping: [0 1]
+2026-01-26 15:41:06,373 - INFO - After X shape: (7043, 24)
+2026-01-26 15:41:06,373 - INFO - After y shape: (7043,)
+2026-01-26 15:41:06,396 - INFO - Original Churn Ratio: 0.27
+2026-01-26 15:41:06,397 - INFO - Train Churn Ratio: 0.27
+2026-01-26 15:41:06,397 - INFO - Test Churn Ratio: 0.27
+2026-01-26 15:41:06,397 - INFO - === STEP 2: Missing Value Handling (10-Technique Tournament) ===
+2026-01-26 15:41:06,414 - INFO - Analyzing Column: TotalCharges
+2026-01-26 15:41:06,426 - INFO - WINNER for 'TotalCharges': Mode
+2026-01-26 15:41:06,429 - INFO - Missing value handling complete.
+2026-01-26 15:41:06,429 - INFO - TotalCharges dtype after missing handling: float64
+2026-01-26 15:41:06,429 - INFO - === STEP 3: Grand Slam Categorical Encoding (FINAL FIXED v2) ===
+2026-01-26 15:41:06,437 - INFO - TotalCharges dtype before encoding: float64
+2026-01-26 15:41:06,440 - INFO - 
+Evaluating techniques for: gender
+2026-01-26 15:41:07,181 - INFO - WINNER -> gender: Label
+2026-01-26 15:41:07,201 - INFO - 
+Evaluating techniques for: Partner
+2026-01-26 15:41:08,275 - INFO - WINNER -> Partner: Label
+2026-01-26 15:41:08,304 - INFO - 
+Evaluating techniques for: Dependents
+2026-01-26 15:41:08,717 - INFO - WINNER -> Dependents: TargetMean
+2026-01-26 15:41:08,722 - INFO - 
+Evaluating techniques for: PhoneService
+2026-01-26 15:41:09,387 - INFO - WINNER -> PhoneService: TargetMean
+2026-01-26 15:41:09,397 - INFO - 
+Evaluating techniques for: MultipleLines
+2026-01-26 15:41:10,287 - INFO - WINNER -> MultipleLines: OneHot
+2026-01-26 15:41:10,294 - INFO - 
+Evaluating techniques for: InternetService
+2026-01-26 15:41:11,361 - INFO - WINNER -> InternetService: Label
+2026-01-26 15:41:11,401 - INFO - 
+Evaluating techniques for: OnlineSecurity
+2026-01-26 15:41:12,129 - INFO - WINNER -> OnlineSecurity: Frequency
+2026-01-26 15:41:12,131 - INFO - 
+Evaluating techniques for: OnlineBackup
+2026-01-26 15:41:12,726 - INFO - WINNER -> OnlineBackup: Label
+2026-01-26 15:41:12,742 - INFO - 
+Evaluating techniques for: DeviceProtection
+2026-01-26 15:41:13,190 - INFO - WINNER -> DeviceProtection: Label
+2026-01-26 15:41:13,203 - INFO - 
+Evaluating techniques for: TechSupport
+2026-01-26 15:41:13,720 - INFO - WINNER -> TechSupport: Label
+2026-01-26 15:41:13,743 - INFO - 
+Evaluating techniques for: StreamingTV
+2026-01-26 15:41:14,214 - INFO - WINNER -> StreamingTV: Label
+2026-01-26 15:41:14,227 - INFO - 
+Evaluating techniques for: StreamingMovies
+2026-01-26 15:41:14,601 - INFO - WINNER -> StreamingMovies: Frequency
+2026-01-26 15:41:14,601 - INFO - 
+Evaluating techniques for: Contract
+2026-01-26 15:41:14,905 - INFO - WINNER -> Contract: Label
+2026-01-26 15:41:14,914 - INFO - 
+Evaluating techniques for: PaperlessBilling
+2026-01-26 15:41:15,173 - INFO - WINNER -> PaperlessBilling: OneHot
+2026-01-26 15:41:15,176 - INFO - 
+Evaluating techniques for: PaymentMethod
+2026-01-26 15:41:15,472 - INFO - WINNER -> PaymentMethod: Label
+2026-01-26 15:41:15,482 - INFO - 
+Evaluating techniques for: Region
+2026-01-26 15:41:15,800 - INFO - WINNER -> Region: TargetMean
+2026-01-26 15:41:15,802 - INFO - 
+Evaluating techniques for: Device_Type
+2026-01-26 15:41:16,169 - INFO - WINNER -> Device_Type: OneHot
+2026-01-26 15:41:16,172 - INFO - 
+Evaluating techniques for: Network_Type
+2026-01-26 15:41:16,587 - INFO - WINNER -> Network_Type: OneHot
+2026-01-26 15:41:16,592 - INFO - 
+Evaluating techniques for: SIM_Provider
+2026-01-26 15:41:17,064 - INFO - WINNER -> SIM_Provider: OneHot
+2026-01-26 15:41:17,069 - INFO - 
+Evaluating techniques for: Usage_Pattern
+2026-01-26 15:41:17,522 - INFO - WINNER -> Usage_Pattern: OneHot
+2026-01-26 15:41:17,531 - INFO - Shape: (7043, 26)
+2026-01-26 15:41:17,531 - INFO - Dtypes:customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges        float64
+Churn                 int64
+Region               object
+Device_Type          object
+Network_Type         object
+SIM_Provider         object
+Usage_Pattern        object
+dtype: object
+2026-01-26 15:41:17,531 - INFO - Available Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn', 'Region', 'Device_Type', 'Network_Type', 'SIM_Provider', 'Usage_Pattern']
+2026-01-26 15:41:17,531 - INFO - After X shape: (7043, 24)
+2026-01-26 15:41:17,532 - INFO - === STEP 4: Variable Transformation & Outliers (Tournament) ===
+2026-01-26 15:41:17,586 - INFO - After VT/OH Shape: (5634, 37)
+2026-01-26 15:41:17,587 - INFO - X_train shape after encoding: (5634, 37)
+2026-01-26 15:41:17,587 - INFO - X_test shape after encoding: (1409, 37)
+2026-01-26 15:41:17,587 - INFO - Variable Transformation applied successfully.
+2026-01-26 15:41:17,587 - INFO - === STEP 5: Feature Selection (8-Strategy Tournament) ===
+2026-01-26 15:41:27,232 - INFO - Final Selected Feature Count: 18
+2026-01-26 15:41:27,232 - INFO - X_train FS Shape: (5634, 18)
+2026-01-26 15:41:27,232 - INFO - X_test FS Shape: (1409, 18)
+2026-01-26 15:41:27,232 - INFO - === STEP 6 & 7: Scaling + Balancing (Grand Slam Tournament) ===
+2026-01-26 15:41:27,234 - INFO - Locked features count: 18
+2026-01-26 15:41:27,234 - INFO - X_train shape before scaling: (5634, 18)
+2026-01-26 15:41:27,234 - INFO - X_test shape before scaling: (1409, 18)
+2026-01-26 15:41:32,460 - INFO - Grand Slam Tournament Complete. Best methods applied.
+2026-01-26 15:41:32,460 - INFO - === FINAL STEP: MODEL TRAINING GRAND PRIX ===
+2026-01-26 15:41:37,676 - INFO - 
+=== FINAL LEADERBOARD ===
+2026-01-26 15:41:37,680 - INFO - 
+             Model  Accuracy      AUC  Optimal_Threshold
+LogisticRegression  0.723208 0.844864           0.851691
+          AdaBoost  0.725337 0.843757           0.493582
+  GradientBoosting  0.737402 0.837914           0.501674
+           XGBoost  0.750887 0.835701           0.378946
+      RandomForest  0.749468 0.829922           0.510000
+        NaiveBayes  0.724627 0.829015           0.356977
+               SVM  0.725337 0.827700           0.613619
+               KNN  0.667140 0.756486           0.800000
+      DecisionTree  0.740241 0.747200           1.000000
+2026-01-26 15:41:37,683 - INFO - Leaderboard saved to 'model_leaderboard.csv'
+2026-01-26 15:41:37,684 - INFO - All Deployment Artifacts Saved Successfully.
+2026-01-26 15:41:37,684 - INFO -  FINAL WINNER MODEL: LogisticRegression | AUC = 0.8449

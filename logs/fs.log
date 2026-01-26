@@ -1,0 +1,19 @@
+2026-01-26 15:41:17,991 - INFO - Cleaned Features: 32 (Dropped 5)
+2026-01-26 15:41:17,992 - INFO - Targeting Top 20 features per strategy
+2026-01-26 15:41:21,637 - INFO - 
+=== FEATURE SELECTION RESULTS (CV AUC) ===
+2026-01-26 15:41:23,145 - INFO - ANOVA           | AUC: 0.8474 | Features: 20
+2026-01-26 15:41:23,916 - INFO - MutualInfo      | AUC: 0.8465 | Features: 20
+2026-01-26 15:41:24,065 - INFO - RFE_Logistic    | AUC: 0.8412 | Features: 20
+2026-01-26 15:41:25,211 - INFO - RFE_Tree        | AUC: 0.8461 | Features: 20
+2026-01-26 15:41:26,156 - INFO - Lasso_L1        | AUC: 0.8485 | Features: 17
+2026-01-26 15:41:26,483 - INFO - RandomForest    | AUC: 0.8416 | Features: 7
+2026-01-26 15:41:27,038 - INFO - ExtraTrees      | AUC: 0.8419 | Features: 9
+2026-01-26 15:41:27,227 - INFO - GradBoost       | AUC: 0.8413 | Features: 6
+2026-01-26 15:41:27,227 - INFO - 
+=== FEATURE SELECTION WINNER ===
+2026-01-26 15:41:27,227 - INFO - WINNER STRATEGY : Lasso_L1
+2026-01-26 15:41:27,227 - INFO - BEST AUC SCORE  : 0.8485
+2026-01-26 15:41:27,227 - INFO - FEATURE COUNT  : 17
+2026-01-26 15:41:27,227 - INFO - + Rescued 1 Business-Critical Features
+2026-01-26 15:41:27,229 - INFO - FINAL FEATURE COUNT: 18

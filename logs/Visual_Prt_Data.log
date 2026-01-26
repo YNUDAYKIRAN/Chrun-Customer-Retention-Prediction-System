@@ -1,0 +1,58 @@
+2026-01-26 16:39:05,094 - INFO - ===== BEFORE DATASET INFO =====
+2026-01-26 16:39:05,094 - INFO - Shape: (7043, 21)
+2026-01-26 16:39:05,094 - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+2026-01-26 16:39:05,094 - INFO - Dtypes:
+customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges         object
+Churn                object
+dtype: object
+2026-01-26 16:39:05,105 - INFO - ===== AFTER SYNTHETIC INFO =====
+2026-01-26 16:39:05,105 - INFO - Shape: (7043, 26)
+2026-01-26 16:39:05,105 - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn', 'Region', 'Device_Type', 'Network_Type', 'SIM_Provider', 'Usage_Pattern']
+2026-01-26 16:39:05,105 - INFO - Dtypes:
+customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges         object
+Churn                object
+Region               object
+Device_Type          object
+Network_Type         object
+SIM_Provider         object
+Usage_Pattern        object
+dtype: object
+2026-01-26 16:39:46,711 - ERROR - Error in line 275: 'int' object is not subscriptable
