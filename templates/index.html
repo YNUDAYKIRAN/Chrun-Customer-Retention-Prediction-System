@@ -1,251 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AI Customer Churn Prediction</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Customer Churn Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+    <style>
+        *{
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
 
-/* ===== Animated Background ===== */
-body{
-    min-height:100vh;
-    background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c92d2);
-    background-size:400% 400%;
-    animation: gradientBG 12s ease infinite;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+        body{
+            margin:0;
+            background:linear-gradient(120deg,#7ee8fa,#80d0c7);
+        }
 
-@keyframes gradientBG{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
+        header{
+            padding:15px 30px;
+            background:#3aa6ff;
+            color:#fff;
+        }
 
-/* ===== Main Container ===== */
-.container{
-    width:1200px;
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(18px);
-    border-radius:22px;
-    padding:35px;
-    box-shadow:0 30px 70px rgba(0,0,0,0.45);
-    color:#fff;
-}
+        .nav span{
+            margin-right:20px;
+            cursor:pointer;
+        }
 
-/* ===== Header ===== */
-header{
-    text-align:center;
-    margin-bottom:30px;
-}
+        .container{
+            max-width:900px;
+            margin:40px auto;
+            background:#fff;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 20px 40px rgba(0,0,0,.15);
+        }
 
-header h1{
-    font-size:38px;
-    font-weight:700;
-    background: linear-gradient(90deg,#00f2fe,#4facfe);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
+        h1{
+            text-align:center;
+            color:#2c3e50;
+        }
 
-header p{
-    margin-top:8px;
-    font-size:15px;
-    opacity:.9;
-}
+        .subtitle{
+            text-align:center;
+            margin-bottom:30px;
+            color:#666;
+        }
 
-/* ===== Form ===== */
-form{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-}
+        .card{
+            margin-bottom:30px;
+        }
 
-label{
-    font-size:13px;
-    opacity:.85;
-}
+        .card h3{
+            margin-bottom:15px;
+            color:#34495e;
+        }
 
-input,select{
-    padding:10px;
-    border-radius:10px;
-    border:none;
-    outline:none;
-    background:rgba(255,255,255,0.95);
-    font-size:14px;
-}
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:15px;
+        }
 
-/* ===== Button ===== */
-button{
-    grid-column:1/5;
-    margin-top:15px;
-    padding:16px;
-    font-size:18px;
-    font-weight:700;
-    border:none;
-    border-radius:14px;
-    background:linear-gradient(90deg,#00f2fe,#4facfe);
-    color:#000;
-    cursor:pointer;
-    transition:.3s;
-}
+        .field label{
+            font-size:14px;
+            font-weight:500;
+            color:#555;
+            margin-bottom:6px;
+            display:block;
+        }
 
-button:hover{
-    transform:scale(1.04);
-    box-shadow:0 0 25px rgba(79,172,254,0.8);
-}
+        input,select{
+            padding:10px;
+            border-radius:8px;
+            border:1px solid #ccc;
+            width:100%;
+        }
 
-/* ===== Result Card ===== */
-.result{
-    margin-top:25px;
-    padding:20px;
-    border-radius:14px;
-    background:rgba(0,0,0,0.45);
-    text-align:center;
-    font-size:22px;
-}
+        .sim-grid{
+            display:flex;
+            justify-content:space-around;
+            flex-wrap:wrap;
+            gap:15px;
+        }
 
-/* ===== Footer ===== */
-footer{
-    margin-top:30px;
-    text-align:center;
-    font-size:13px;
-    opacity:.85;
-}
-</style>
+        .sim-grid label{
+            background:#f4f6f8;
+            padding:10px 18px;
+            border-radius:10px;
+            cursor:pointer;
+        }
+
+        .predict-btn{
+            width:100%;
+            padding:14px;
+            background:linear-gradient(90deg,#4facfe,#00f2fe);
+            color:#fff;
+            font-size:16px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+        }
+
+        .predict-btn:hover{
+            opacity:0.9;
+        }
+
+        .result{
+            margin-top:25px;
+            text-align:center;
+            font-size:18px;
+            font-weight:600;
+            color:#27ae60;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-
 <header>
-    <h1>🤖 AI Customer Churn Prediction</h1>
-    <p>Smart Retention Intelligence System | Developed by <strong>Uday Kiran</strong></p>
+    <div class="nav">
+        <span>📊 About Project</span>
+        <span>📥 About Inputs</span>
+        <span>👨‍💻 About Author</span>
+    </div>
 </header>
 
-<form action="/predict" method="post">
+<div class="container">
+    <h1>Customer Churn Prediction</h1>
+    <p class="subtitle">Enter customer details to predict the likelihood</p>
 
-<!-- NUMERIC -->
-<label>Senior Citizen</label>
-<select name="SeniorCitizen"><option value="1">Yes</option><option value="0">No</option></select>
+    <form action="/predict" method="POST">
 
-<label>Tenure (Months)</label>
-<input type="number" name="tenure" required>
+        <!-- Customer Details -->
+        <div class="card">
+            <h3>👤 Customer Details</h3>
+            <div class="grid">
 
-<label>Monthly Charges</label>
-<input type="number" step="0.01" name="MonthlyCharges" required>
+                <div class="field">
+                    <label>Gender</label>
+                    <select name="gender" required>
+                        <option value="">Select</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
 
-<label>Total Charges</label>
-<input type="number" step="0.01" name="TotalCharges" required>
+                <div class="field">
+                    <label>Senior Citizen</label>
+                    <select name="SeniorCitizen">
+                        <option value="">Select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
 
-<!-- SERVICES -->
-<label>Partner</label>
-<select name="Partner"><option>Yes</option><option>No</option></select>
+                <div class="field">
+                    <label>Partner</label>
+                    <select name="Partner">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
 
-<label>Dependents</label>
-<select name="Dependents"><option>Yes</option><option>No</option></select>
+                <div class="field">
+                    <label>Dependents</label>
+                    <select name="Dependents">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
 
-<label>Phone Service</label>
-<select name="PhoneService"><option>Yes</option><option>No</option></select>
+                <div class="field">
+                    <label>Tenure (Months)</label>
+                    <input type="number" name="tenure" required>
+                </div>
 
-<label>Multiple Lines</label>
-<select name="MultipleLines">
-<option>Yes</option><option>No</option><option>No phone service</option>
-</select>
+            </div>
+        </div>
 
-<label>Internet Service</label>
-<select name="InternetService">
-<option>DSL</option><option>Fiber optic</option><option>No</option>
-</select>
+        <!-- Service Details -->
+        <div class="card">
+            <h3>📡 Service Details</h3>
+            <div class="grid">
 
-<label>Online Security</label>
-<select name="OnlineSecurity">
-<option>Yes</option><option>No</option><option>No internet service</option>
-</select>
+                <div class="field">
+                    <label>Phone Service</label>
+                    <select name="PhoneService"><option>Yes</option><option>No</option></select>
+                </div>
 
-<label>Online Backup</label>
-<select name="OnlineBackup">
-<option>Yes</option><option>No</option><option>No internet service</option>
-</select>
+                <div class="field">
+                    <label>Multiple Lines</label>
+                    <select name="MultipleLines">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No phone service</option>
+                    </select>
+                </div>
 
-<label>Device Protection</label>
-<select name="DeviceProtection">
-<option>Yes</option><option>No</option><option>No internet service</option>
-</select>
+                <div class="field">
+                    <label>Internet Service</label>
+                    <select name="InternetService">
+                        <option>DSL</option>
+                        <option>Fiber optic</option>
+                        <option>No</option>
+                    </select>
+                </div>
 
-<label>Tech Support</label>
-<select name="TechSupport">
-<option>Yes</option><option>No</option><option>No internet service</option>
-</select>
+                <div class="field">
+                    <label>Online Security</label>
+                    <select name="OnlineSecurity"><option>Yes</option><option>No</option></select>
+                </div>
 
-<label>Streaming TV</label>
-<select name="StreamingTV">
-<option>Yes</option><option>No</option><option>No internet service</option>
-</select>
+                <div class="field">
+                    <label>Online Backup</label>
+                    <select name="OnlineBackup"><option>Yes</option><option>No</option></select>
+                </div>
 
-<label>Streaming Movies</label>
-<select name="StreamingMovies">
-<option>Yes</option><option>No</option><option>No internet service</option>
-</select>
+                <div class="field">
+                    <label>Device Protection</label>
+                    <select name="DeviceProtection"><option>Yes</option><option>No</option></select>
+                </div>
 
-<!-- BILLING -->
-<label>Contract</label>
-<select name="Contract">
-<option>Month-to-month</option><option>One year</option><option>Two year</option>
-</select>
+                <div class="field">
+                    <label>Tech Support</label>
+                    <select name="TechSupport"><option>Yes</option><option>No</option></select>
+                </div>
 
-<label>Paperless Billing</label>
-<select name="PaperlessBilling"><option>Yes</option><option>No</option></select>
+                <div class="field">
+                    <label>Streaming TV</label>
+                    <select name="StreamingTV"><option>Yes</option><option>No</option></select>
+                </div>
 
-<label>Payment Method</label>
-<select name="PaymentMethod">
-<option>Electronic check</option>
-<option>Mailed check</option>
-<option>Bank transfer (automatic)</option>
-<option>Credit card (automatic)</option>
-</select>
+                <div class="field">
+                    <label>Streaming Movies</label>
+                    <select name="StreamingMovies"><option>Yes</option><option>No</option></select>
+                </div>
 
-<!-- EXTRA -->
-<label>Region</label>
-<select name="Region"><option>Urban</option><option>Semi-Urban</option><option>Rural</option></select>
+            </div>
+        </div>
 
-<label>Device Type</label>
-<select name="DeviceType"><option>Android</option><option>iOS</option><option>Windows</option></select>
+        <!-- SIM Provider -->
+        <div class="card">
+            <h3>📱 SIM Provider</h3>
+            <div class="sim-grid">
+                <label><input type="radio" name="SIM_Provider" value="Airtel" required> Airtel</label>
+                <label><input type="radio" name="SIM_Provider" value="Jio"> Jio</label>
+                <label><input type="radio" name="SIM_Provider" value="VI"> VI</label>
+                <label><input type="radio" name="SIM_Provider" value="BSNL"> BSNL</label>
+            </div>
+        </div>
 
-<label>Network Type</label>
-<select name="NetworkType"><option>3G</option><option>4G</option><option>5G</option></select>
+        <!-- Billing Details -->
+        <div class="card">
+            <h3>💳 Billing Details</h3>
+            <div class="grid">
 
-<label>SIM Provider</label>
-<select name="SIM_Provider"><option>Jio</option><option>Airtel</option><option>Vodafone</option></select>
+                <div class="field">
+                    <label>Paperless Billing</label>
+                    <select name="PaperlessBilling"><option>Yes</option><option>No</option></select>
+                </div>
 
-<label>Usage Pattern</label>
-<select name="UsagePattern"><option>Low</option><option>Medium</option><option>High</option></select>
+                <div class="field">
+                    <label>Payment Method</label>
+                    <select name="PaymentMethod">
+                        <option>Electronic check</option>
+                        <option>Mailed check</option>
+                        <option>Bank transfer (automatic)</option>
+                        <option>Credit card (automatic)</option>
+                    </select>
+                </div>
 
-<button type="submit">🔮 Predict Churn</button>
-</form>
+                <div class="field">
+                    <label>Monthly Charges</label>
+                    <input type="number" step="0.01" name="MonthlyCharges" required>
+                </div>
 
-{% if prediction_text %}
-<div class="result">
-<strong>{{ model_name }}</strong><br>
-{{ prediction_text }}
+                <div class="field">
+                    <label>Total Charges</label>
+                    <input type="number" step="0.01" name="TotalCharges" required>
+                </div>
+
+            </div>
+        </div>
+
+        <button type="submit" class="predict-btn">🔍 Predict Customer Likelihood</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
 </div>
-{% endif %}
 
-<footer>
-© 2026 | AI Customer Retention System | Designed & Developed by Uday Kiran
-</footer>
-
-</div>
 </body>
 </html>
