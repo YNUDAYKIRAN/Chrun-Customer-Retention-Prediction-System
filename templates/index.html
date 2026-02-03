@@ -9,112 +9,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        *{
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
-        }
+        *{box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-        body{
-            margin:0;
-            background:linear-gradient(120deg,#7ee8fa,#80d0c7);
-        }
+        body{margin:0;background:linear-gradient(120deg,#7ee8fa,#80d0c7);}
 
-        header{
-            padding:15px 30px;
-            background:#3aa6ff;
-            color:#fff;
-        }
+        header{padding:15px 30px;background:#3aa6ff;color:#fff;}
 
-        .nav span{
-            margin-right:20px;
-            cursor:pointer;
-        }
+        .nav span{margin-right:20px;cursor:pointer;font-weight:500;}
 
         .container{
-            max-width:900px;
-            margin:40px auto;
-            background:#fff;
-            padding:30px;
-            border-radius:12px;
+            max-width:900px;margin:40px auto;background:#fff;
+            padding:30px;border-radius:12px;
             box-shadow:0 20px 40px rgba(0,0,0,.15);
         }
 
-        h1{
-            text-align:center;
-            color:#2c3e50;
+        h1{text-align:center;color:#2c3e50;}
+        .subtitle{text-align:center;margin-bottom:30px;color:#666;}
+
+        .card{margin-bottom:30px;}
+        .card h3{margin-bottom:15px;color:#34495e;}
+
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;}
+
+        .field label{font-size:14px;font-weight:500;color:#555;margin-bottom:6px;display:block;}
+
+        input,select{padding:10px;border-radius:8px;border:1px solid #ccc;width:100%;}
+
+        /* SIM Provider */
+        .sim-grid{display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px;}
+
+        .sim-card{
+            display:flex;flex-direction:column;align-items:center;gap:8px;
+            background:#f4f6f8;padding:15px;border-radius:12px;
+            cursor:pointer;width:120px;transition:0.3s;
         }
 
-        .subtitle{
-            text-align:center;
-            margin-bottom:30px;
-            color:#666;
-        }
-
-        .card{
-            margin-bottom:30px;
-        }
-
-        .card h3{
-            margin-bottom:15px;
-            color:#34495e;
-        }
-
-        .grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-            gap:15px;
-        }
-
-        .field label{
-            font-size:14px;
-            font-weight:500;
-            color:#555;
-            margin-bottom:6px;
-            display:block;
-        }
-
-        input,select{
-            padding:10px;
-            border-radius:8px;
-            border:1px solid #ccc;
-            width:100%;
-        }
-
-        .sim-grid{
-            display:flex;
-            justify-content:space-around;
-            flex-wrap:wrap;
-            gap:15px;
-        }
-
-        .sim-grid label{
-            background:#f4f6f8;
-            padding:10px 18px;
-            border-radius:10px;
-            cursor:pointer;
-        }
+        .sim-card img{width:60px;height:60px;object-fit:contain;}
+        .sim-card span{font-size:14px;font-weight:600;}
+        .sim-card input{display:none;}
+        .sim-card:hover{transform:scale(1.05);}
+        .sim-card input:checked + img{outline:3px solid #4facfe;border-radius:10px;}
 
         .predict-btn{
-            width:100%;
-            padding:14px;
-            background:linear-gradient(90deg,#4facfe,#00f2fe);
-            color:#fff;
-            font-size:16px;
-            border:none;
-            border-radius:10px;
-            cursor:pointer;
+            width:100%;padding:14px;background:linear-gradient(90deg,#4facfe,#00f2fe);
+            color:#fff;font-size:16px;border:none;border-radius:10px;cursor:pointer;
         }
 
-        .predict-btn:hover{
-            opacity:0.9;
+        .result{margin-top:25px;text-align:center;font-size:18px;font-weight:600;color:#27ae60;}
+
+        /* -------- MODAL (ABOUT AUTHOR) -------- */
+        .modal{
+            display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,0.5);justify-content:center;align-items:center;
         }
 
-        .result{
-            margin-top:25px;
-            text-align:center;
-            font-size:18px;
-            font-weight:600;
-            color:#27ae60;
+        .modal-content{
+            background:#fff;padding:30px;border-radius:12px;
+            text-align:center;max-width:400px;width:90%;
+        }
+
+        .modal-content h2{margin-bottom:10px;}
+        .modal-content p{color:#555;margin-bottom:20px;}
+
+        .author-links a{
+            display:inline-block;margin:8px;padding:10px 18px;
+            border-radius:8px;color:#fff;text-decoration:none;font-weight:600;
+        }
+
+        .linkedin{background:#0a66c2;}
+        .github{background:#333;}
+
+        .close-btn{
+            margin-top:15px;display:inline-block;
+            color:#3aa6ff;cursor:pointer;font-weight:600;
         }
     </style>
 </head>
@@ -125,7 +92,7 @@
     <div class="nav">
         <span>📊 About Project</span>
         <span>📥 About Inputs</span>
-        <span>👨‍💻 About Author</span>
+        <span onclick="openAuthor()">👨‍💻 About Author</span>
     </div>
 </header>
 
@@ -135,155 +102,72 @@
 
     <form action="/predict" method="POST">
 
-        <!-- Customer Details -->
+        <!-- CUSTOMER DETAILS -->
         <div class="card">
             <h3>👤 Customer Details</h3>
             <div class="grid">
-
-                <div class="field">
-                    <label>Gender</label>
-                    <select name="gender" required>
-                        <option value="">Select</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Senior Citizen</label>
-                    <select name="SeniorCitizen">
-                        <option value="">Select</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Partner</label>
-                    <select name="Partner">
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Dependents</label>
-                    <select name="Dependents">
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Tenure (Months)</label>
-                    <input type="number" name="tenure" required>
-                </div>
-
+                <div class="field"><label>Gender</label><select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+                <div class="field"><label>Senior Citizen</label><select name="SeniorCitizen"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></div>
+                <div class="field"><label>Partner</label><select name="Partner"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Dependents</label><select name="Dependents"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Tenure (Months)</label><input type="number" name="tenure" required></div>
             </div>
         </div>
 
-        <!-- Service Details -->
+        <!-- SERVICE DETAILS -->
         <div class="card">
             <h3>📡 Service Details</h3>
             <div class="grid">
-
-                <div class="field">
-                    <label>Phone Service</label>
-                    <select name="PhoneService"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Multiple Lines</label>
-                    <select name="MultipleLines">
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>No phone service</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Internet Service</label>
-                    <select name="InternetService">
-                        <option>DSL</option>
-                        <option>Fiber optic</option>
-                        <option>No</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Online Security</label>
-                    <select name="OnlineSecurity"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Online Backup</label>
-                    <select name="OnlineBackup"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Device Protection</label>
-                    <select name="DeviceProtection"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Tech Support</label>
-                    <select name="TechSupport"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Streaming TV</label>
-                    <select name="StreamingTV"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Streaming Movies</label>
-                    <select name="StreamingMovies"><option>Yes</option><option>No</option></select>
-                </div>
-
+                <div class="field"><label>Phone Service</label><select name="PhoneService"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Multiple Lines</label><select name="MultipleLines"><option>Yes</option><option>No</option><option>No phone service</option></select></div>
+                <div class="field"><label>Internet Service</label><select name="InternetService"><option>DSL</option><option>Fiber optic</option><option>No</option></select></div>
+                <div class="field"><label>Online Security</label><select name="OnlineSecurity"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Online Backup</label><select name="OnlineBackup"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Device Protection</label><select name="DeviceProtection"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Tech Support</label><select name="TechSupport"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Streaming TV</label><select name="StreamingTV"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Streaming Movies</label><select name="StreamingMovies"><option>Yes</option><option>No</option></select></div>
             </div>
         </div>
 
-        <!-- SIM Provider -->
+        <!-- SIM PROVIDER -->
         <div class="card">
             <h3>📱 SIM Provider</h3>
             <div class="sim-grid">
-                <label><input type="radio" name="SIM_Provider" value="Airtel" required> Airtel</label>
-                <label><input type="radio" name="SIM_Provider" value="Jio"> Jio</label>
-                <label><input type="radio" name="SIM_Provider" value="VI"> VI</label>
-                <label><input type="radio" name="SIM_Provider" value="BSNL"> BSNL</label>
+                <label class="sim-card">
+                    <input type="radio" name="SIM_Provider" value="Airtel" required>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Airtel_logo.svg">
+                    <span>Airtel</span>
+                </label>
+
+                <label class="sim-card">
+                    <input type="radio" name="SIM_Provider" value="Jio">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg">
+                    <span>Jio</span>
+                </label>
+
+                <label class="sim-card">
+                    <input type="radio" name="SIM_Provider" value="VI">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vodafone_Idea_logo.svg">
+                    <span>VI</span>
+                </label>
+
+                <label class="sim-card">
+                    <input type="radio" name="SIM_Provider" value="BSNL">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/BSNL_logo_with_slogan.svg">
+                    <span>BSNL</span>
+                </label>
             </div>
         </div>
 
-        <!-- Billing Details -->
+        <!-- BILLING -->
         <div class="card">
             <h3>💳 Billing Details</h3>
             <div class="grid">
-
-                <div class="field">
-                    <label>Paperless Billing</label>
-                    <select name="PaperlessBilling"><option>Yes</option><option>No</option></select>
-                </div>
-
-                <div class="field">
-                    <label>Payment Method</label>
-                    <select name="PaymentMethod">
-                        <option>Electronic check</option>
-                        <option>Mailed check</option>
-                        <option>Bank transfer (automatic)</option>
-                        <option>Credit card (automatic)</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Monthly Charges</label>
-                    <input type="number" step="0.01" name="MonthlyCharges" required>
-                </div>
-
-                <div class="field">
-                    <label>Total Charges</label>
-                    <input type="number" step="0.01" name="TotalCharges" required>
-                </div>
-
+                <div class="field"><label>Paperless Billing</label><select name="PaperlessBilling"><option>Yes</option><option>No</option></select></div>
+                <div class="field"><label>Payment Method</label><select name="PaymentMethod"><option>Electronic check</option><option>Mailed check</option><option>Bank transfer (automatic)</option><option>Credit card (automatic)</option></select></div>
+                <div class="field"><label>Monthly Charges</label><input type="number" step="0.01" name="MonthlyCharges" required></div>
+                <div class="field"><label>Total Charges</label><input type="number" step="0.01" name="TotalCharges" required></div>
             </div>
         </div>
 
@@ -291,11 +175,31 @@
     </form>
 
     {% if prediction_text %}
-        <div class="result">
-            {{ prediction_text }}
-        </div>
+        <div class="result">{{ prediction_text }}</div>
     {% endif %}
 </div>
+
+<!-- ABOUT AUTHOR MODAL -->
+<div class="modal" id="authorModal">
+    <div class="modal-content">
+        <h2>Uday Kiran</h2>
+        <p>Data Science & AI | ML Engineer Aspirant</p>
+        <div class="author-links">
+            <a class="linkedin" href="https://www.linkedin.com/feed/" target="_blank">LinkedIn</a>
+            <a class="github" href="https://github.com/YNUDAYKIRAN" target="_blank">GitHub</a>
+        </div>
+        <div class="close-btn" onclick="closeAuthor()">Close</div>
+    </div>
+</div>
+
+<script>
+function openAuthor(){
+    document.getElementById("authorModal").style.display="flex";
+}
+function closeAuthor(){
+    document.getElementById("authorModal").style.display="none";
+}
+</script>
 
 </body>
 </html>
