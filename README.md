@@ -250,7 +250,14 @@ Open in browser:
 http://127.0.0.1:5000/
 
 
----
+🚀 Live Demo (Deployed Application)
+
+🔗 Live Application URL:
+👉 https://ai-powered-customer-retention-prediction-nvyo.onrender.com
+
+The application is deployed on Render and allows users to enter customer details and instantly receive:
+
+Churn Risk (Yes / No)
 
 ## 📈 Business Impact
 
